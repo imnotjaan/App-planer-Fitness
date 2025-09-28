@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF--8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Fitness & Nutrition Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#0891b2', // cyan-600
+              'brand-secondary': '#10b981', // emerald-500
+              'base-100': '#0f172a', // slate-900
+              'base-200': '#1e293b', // slate-800
+              'base-300': '#334155', // slate-700
+              'text-primary': '#f1f5f9', // slate-100
+              'text-secondary': '#94a3b8', // slate-400
+            },
+          },
+        },
+      }
+    </script>
+    <script>
+      // Moved to top-level scope to ensure it's defined before any script needs it.
+      const METHOD_SOURCES = {
+        navy: { name: 'U.S. Navy (BCA)', note: 'Requiere perímetros válidos: cuello/cintura; y + cadera en mujeres.' },
+        deurenberg: { name: 'Deurenberg (1991)', note: 'Usa IMC, edad y sexo como estimación poblacional.' }
+      };
+    </script>
+    <style>
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #reporte, #reporte * {
+          visibility: visible;
+        }
+        #reporte {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          margin: 0;
+          padding: 1rem;
+          font-size: 10pt;
+        }
+        @page {
+          margin: 1.5cm;
+        }
+        /* Override dark theme for printing */
+        #reporte, 
+        #reporte .bg-base-100, 
+        #reporte .bg-base-200, 
+        #reporte .bg-base-300,
+        #reporte div[class*="bg-"]
+        {
+           background: #ffffff !important;
+           color: #000000 !important;
+        }
+        #reporte * {
+           color: #000000 !important;
+           border-color: #dddddd !important;
+           -webkit-print-color-adjust: exact; /* Ensures background colors print in Chrome */
+           print-color-adjust: exact;
+        }
+        /* Remove shadows and ensure borders are print-friendly */
+        #reporte .shadow-lg, #reporte .shadow-md {
+           box-shadow: none !important;
+        }
+        #reporte .rounded-lg, #reporte .rounded-2xl {
+           border: 1px solid #ccc !important;
+        }
+        /* Prevent elements from being split across pages */
+        #reporte .grid > div, #reporte .space-y-6 > div, #reporte .flex > div {
+           break-inside: avoid;
+        }
+        #reporte h2, #reporte h3, #reporte h4 {
+           break-after: avoid;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-base-100 text-text-primary">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "name": "AI Fitness & Nutrition Planner",
+  "description": "An intelligent web application that calculates key fitness metrics (BMI, body fat, BMR, TDEE) and generates personalized workout routines using the Gemini API based on your goals and training availability.",
+  "requestFramePermissions": []
+}
